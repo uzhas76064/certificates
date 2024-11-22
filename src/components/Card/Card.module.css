@@ -43,3 +43,34 @@
 .card__btn:hover {
     background-color: #0056b3;
 }
+
+
+@media (max-width: 768px) {
+    .card__title {
+        font-size: 1.25rem;
+    }
+
+    .card__description {
+        font-size: 0.9rem;
+    }
+
+    .card__btn {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card__title {
+        font-size: 1.1rem;
+    }
+
+    .card__description {
+        font-size: 0.85rem;
+    }
+
+    .card__btn {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+}
