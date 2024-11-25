@@ -42,7 +42,7 @@ const Form = () => {
                     'Content-Type': 'application/json',
                 }
             });
-            setIsSuccess(true); // Если отправка успешна, меняем состояние
+            setIsSuccess(true);
         } catch (error) {
             console.error("Ошибка при отправке данных:", error);
             alert('Ошибка при отправке данных. Попробуйте снова.');
@@ -50,7 +50,6 @@ const Form = () => {
     }
 
 
-    // Если сертификат не передан, перенаправляем на главную
     if (!certName) {
         return <Navigate to="/" replace />;
     }
@@ -88,6 +87,7 @@ const Form = () => {
         // Если форма валидна, можно отправить её
         if (valid) {
             sendData();
+            return <Navigate to='__blank'/>
         }
     };
 

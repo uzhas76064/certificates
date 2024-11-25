@@ -15,6 +15,7 @@ createRoot(document.getElementById('root')).render(
               <Routes>
                   <Route path="/" element={<Main/>} exact></Route>
                   <Route path="/:id" element={<Form/>} exact/>
+                  <Route path="/success_payment" element={<h1>Оплата...</h1>}/>
               </Routes>
               <Footer year='2024' title='Магазин сертификатов'/>
           </StrictMode>
