@@ -9,7 +9,7 @@ const Footer = ({title, year}) => (
 
 Footer.propTypes = {
     title: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
+    year: PropTypes.string.isRequired,
 }
 
 export default Footer;
