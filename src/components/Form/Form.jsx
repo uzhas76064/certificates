@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from './Form.module.css';
 import { Link, Navigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import {config} from "../../config.js";
 
 const Form = () => {
     const location = useLocation();
@@ -16,9 +17,9 @@ const Form = () => {
 
     const sendData = async () => {
         try {
-            const response = await axios.post('https://sycret.ru/service/api/api', {
-                "ApiKey": "011ba11bdcad4fa396660c2ec447ef14",
-                "MethodName": "OSSale",
+            const response = await axios.post(config.URL, {
+                "ApiKey": config.API_KEY,
+                "MethodName": config.OSSALE,
                 "TableName": tableName,
                 "PrimaryKey": primaryKey,
                 "Price": price,

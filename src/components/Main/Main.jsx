@@ -1,28 +1,44 @@
-import styles from './Main.module.css'
+import styles from './Main.module.css';
 import axios from "axios";
-import {useEffect, useState} from "react";
+import {config} from '../../config.js';
+import { useEffect, useState } from "react";
 import Cards from "../Cards/Cards.jsx";
 
 const Main = () => {
     const [cards, setCards] = useState([]);
-
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null); // Состояние для хранения ошибки
 
     const getCertsData = async () => {
-        const response = await axios('https://sycret.ru/service/api/api?ApiKey=011ba11bdcad4fa396660c2ec447ef14&MethodName=OSGetGoodList');
-
-        setCards(response.data.data);
-    }
+        try {
+            const response = await axios(`${config.URL}?ApiKey=${config.API_KEY}&MethodName=${config.OSGetGoodList}`);
+            setCards(response.data.data); // Обновляем данные с сервера
+            setLoading(false); // Завершаем загрузку
+        } catch (err) {
+            setError('Произошла ошибка при загрузке данных.'); // Если ошибка, сохраняем сообщение об ошибке
+            setLoading(false); // Завершаем загрузку, даже если произошла ошибка
+        }
+    };
 
     useEffect(() => {
         getCertsData();
-    }, [])
-    console.log(cards)
+    }, []);
+
+    // Если данные еще загружаются
+    if (loading) {
+        return <h1>Загрузка...</h1>;
+    }
+
+    // Если произошла ошибка
+    if (error) {
+        return <h1>{error}</h1>;
+    }
 
     return (
         <main className={styles.main}>
-            <Cards cards={cards}/>
+            <Cards cards={cards} />
         </main>
-    )
-}
+    );
+};
 
 export default Main;
